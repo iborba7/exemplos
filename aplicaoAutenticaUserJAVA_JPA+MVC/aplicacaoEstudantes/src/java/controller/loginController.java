@@ -50,8 +50,8 @@ public class loginController extends HttpServlet {
         
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(600);
-        session.setAttribute("loginUser", login);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/listarAlunos");
+        session.setAttribute("loginUser", usuario);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/bemVindo.html");
         dispatcher.forward(request, response);
         }
         
