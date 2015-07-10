@@ -1,0 +1,26 @@
+<<Sistema escolar>>
+
+#Autor: Lucas Borba
+#Tempo de trabalho total: 3 horas
+#Tecnologias usadas:
+
+<NETBEANS
+<JAVA
+<JPA
+<POSTGRES
+<MVC
+<JAVASCRIPT
+
+#Funcionalidades:        	|Status|----|Tempo de trabalho|
+
+Cadastro de usuário ------------|Pronto|----|   1.5 horas     |
+
+Autenticação de usuário---------|Pronto|----|   1.5 horas     |
+
+Cadastro de alunos---------------|A REALIZAR|----|   0 horas   |
+
+Excluir alunos------------------|A REALIZAR|----|   0 horas   |
+
+Listar Alunos-------------------|A REALIZAR|----|   0 horas   |
+
+Frequencia de Alunos------------|A REALIZAR|----|   0 horas   |
