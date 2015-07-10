@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cadastro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+        
+        function validaForm(){
+         
+        
+        var senha = form1.senha.value;
+        var senha2 = form1.senha2.value;
+        
+        if(senha !== senha2){
+            
+            alert("As senhas estão diferentes");
+            return false;
+        
+        }
+        }
+            
+            
+            
+            
+        
+        
+        
+        
+        </script>
+    </head>
+    <body>
+        <div>
+            <form id="form1" action="SalvarUsuarioController" method="post">
+                <p>Seu nome</p>
+                <input type="text" name="nome" id="nome" size="20" required/><br/>
+                <p>Seu CPF</p>
+                <input type="text" name="cpf" id="cpf" size="20" required/><br/>
+                <p>Seu Login</p>
+                <input type="text" name="login" id="login" size="20" required><br/>
+                <p>Sua Senha</p>
+                <input type="password" id="senha" name="senha" size="20" required><br/>                
+                <p>Confirme sua Senha</p>
+                <input type="password" id="senha2" name="senha2" size="20" required><br/>
+                <input type="submit" onclick="return validaForm()" id="submit" name="Enviar"/>
+            </form>
+        </div>
+    </body>
+</html>
