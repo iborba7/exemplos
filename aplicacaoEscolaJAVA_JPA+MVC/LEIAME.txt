@@ -17,10 +17,10 @@ Cadastro de usuário ------------|Pronto|----|   1.5 horas     |
 
 Autenticação de usuário---------|Pronto|----|   1.5 horas     |
 
-Cadastro de alunos---------------|A REALIZAR|----|   0 horas   |
+Cadastro de alunos---------------|PRONTO|---|   1.5 horas     |
 
 Excluir alunos------------------|A REALIZAR|----|   0 horas   |
 
-Listar Alunos-------------------|A REALIZAR|----|   0 horas   |
+Listar Alunos-------------------|PRONTO|----|   1.5 horas     |
 
 Frequencia de Alunos------------|A REALIZAR|----|   0 horas   |
