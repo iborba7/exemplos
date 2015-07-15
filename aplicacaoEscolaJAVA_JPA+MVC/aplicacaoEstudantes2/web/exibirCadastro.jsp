@@ -11,7 +11,7 @@
         <h1>Exibir Cadastro</h1>
         
         <table border="1" cellspacing="0" cellpadding="4">
-        <tr><th>Código</th><th>Nome</th><th>&nbsp;</th></tr>
+        <tr><th>Nome</th><th>CPF</th><th>Matricula</th><th>&nbsp;</th></tr>
         <c:forEach var="a" items="${cadastro}">
             <tr>
                 <td>${a.nome}</td>

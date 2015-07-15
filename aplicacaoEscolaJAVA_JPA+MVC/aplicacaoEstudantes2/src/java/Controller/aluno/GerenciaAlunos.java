@@ -21,7 +21,7 @@ import javax.servlet.annotation.WebServlet;
  *
  * @author Compaq
  */
-@WebServlet(value="/gerenciarAlunos")
+@WebServlet(value="/gerenciaAlunos")
 public class GerenciaAlunos extends HttpServlet {
 
     

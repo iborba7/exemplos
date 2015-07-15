@@ -19,9 +19,9 @@
             <h2>Menu</h2>
             <ul>
                 <li><a href="cadastrarAluno.html">Adicionar Alunos</a></li>
-                <li><a href="/EncaminhalistarAlunos">Listar Alunos</a></li> 
-                <li><a href="/removerAlunos">Remover Alunos</a></li>
-                <li><a href="/registrarFrequencia">Registrar Frequência</a></li>
+                <li><a href="ListaAluno">Listar Alunos</a></li> 
+                <li><a href="removerAlunos">Remover Alunos</a></li>
+                <li><a href="registrarFrequencia">Registrar Frequência</a></li>
             </ul>
         </h1>
         <footer>${pageContext.request.getAttribute(usuario)}</footer>

@@ -12,11 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DAO.AlunoDAO;
+import MODEL.Aluno;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.annotation.WebServlet;
+import javax.validation.OverridesAttribute.List;
 /**
  *
  * @author Compaq
  */
+@WebServlet(value = "/ListaAluno")
 public class ListaAluno extends HttpServlet {
 
         
@@ -26,10 +30,10 @@ public class ListaAluno extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
+            
             AlunoDAO dao = new AlunoDAO();
-            dao.listaAlunos();
-            request.setAttribute("cadastro", dao.listaAlunos());
+            
+            request.setAttribute("cadastro",dao.listaAlunos());
              RequestDispatcher dispatcher = request.getRequestDispatcher("exibirCadastro.jsp");
         dispatcher.forward(request, response);
     

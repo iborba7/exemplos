@@ -16,22 +16,7 @@
         <servlet-name>ListaAluno</servlet-name>
         <servlet-class>Controller.aluno.ListaAluno</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>adicionaAluno</servlet-name>
-        <url-pattern>/adicionaAluno</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>listarAlunos</servlet-name>
-        <url-pattern>/listarAlunos</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SalvaAluno</servlet-name>
-        <url-pattern>/SalvaAluno</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListaAluno</servlet-name>
-        <url-pattern>/ListaAluno</url-pattern>
-    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

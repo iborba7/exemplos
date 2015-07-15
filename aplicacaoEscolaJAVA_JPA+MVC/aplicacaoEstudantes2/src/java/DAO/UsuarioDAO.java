@@ -24,10 +24,12 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstu
         public Usuario getUser(String login, String senha){
         
             try{
-            
+                em.getTransaction().begin();
                 Usuario user = (Usuario) em.createQuery("SELECT u from Usuario u where u.login = :login and u.senha = :senha")
                         .setParameter("login", login)
                         .setParameter("senha", senha).getSingleResult();
+                em.getTransaction().commit();
+                    em.close();
                 
                 return user;
                 
@@ -39,8 +41,10 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstu
         }
            public boolean insereUsuario(Usuario user){
                 try{
-                
+                    em.getTransaction().begin();
                     em.persist(user);
+                    em.getTransaction().commit();
+                    em.close();
                     return true;   
                     
                 }catch (Exception e){
@@ -53,8 +57,11 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstu
             public boolean deletaUsuario (Usuario user){
             
                 try{
-                
+                    
+                    em.getTransaction().begin();
                     em.remove(user);
+                    em.getTransaction().commit();
+                    em.close();
                     return true;
                 }catch(Exception e){
                     
