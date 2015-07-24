@@ -26,25 +26,23 @@ import MODEL.Usuario;
 @WebServlet(value="/loginController")
 public class loginController extends HttpServlet {
 
+         
   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        String login;
-        String senha;
-        
+         
+         UsuarioDAO dao = new UsuarioDAO();
+         Usuario usuario = new Usuario();
+         String login;
+         String senha;
+         
         login = request.getParameter("login");
         senha = request.getParameter("senha");
-        
-        UsuarioDAO dao = new UsuarioDAO();
-        Usuario usuario = new Usuario();
         
         usuario = dao.getUser(login, senha);
         
         if(usuario == null ){
-        
- 
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro.html");
         dispatcher.forward(request, response);

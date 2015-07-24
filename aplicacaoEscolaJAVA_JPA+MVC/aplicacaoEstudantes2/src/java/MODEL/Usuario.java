@@ -32,29 +32,36 @@ public class Usuario implements Serializable {
     private String senha;
     
     @Column
-    private int cpf;
+    private String cpf;
     
     @Column
     private String login;
     
-     @Id
-    @SequenceGenerator(name="usuario_id_seq",
-                       sequenceName="usuario_id_seq",
-                       allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                    generator="usuario_id_seq")
-    @Column(name = "id", updatable=false)
+    @Id
+    @GeneratedValue
     private Integer id; 
 
-    public int getCpf() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+   
+    
+    
+
+     public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public Usuario(String nome, String senha, int cpf, String login) {
+    public Usuario(String nome, String senha, String cpf, String login) {
         this.nome = nome;
         this.senha = senha;
         this.cpf = cpf;
@@ -62,8 +69,7 @@ public class Usuario implements Serializable {
         
     }
 
-
-
+    
     
 
     public void setLogin(String login) {

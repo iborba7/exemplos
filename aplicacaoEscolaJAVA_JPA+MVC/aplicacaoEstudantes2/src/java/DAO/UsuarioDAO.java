@@ -7,7 +7,7 @@ package DAO;
 
 import javax.persistence.EntityManager; 
 import javax.persistence.EntityManagerFactory; 
-import javax.persistence.NoResultException; 
+ 
 import javax.persistence.Persistence;
 import MODEL.Usuario;
 
@@ -18,7 +18,7 @@ import MODEL.Usuario;
 public class UsuarioDAO {
     
     
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstudantesPU");
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstudantesPU2");
         EntityManager em = emf.createEntityManager();
     
         public Usuario getUser(String login, String senha){
@@ -28,23 +28,48 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstu
                 Usuario user = (Usuario) em.createQuery("SELECT u from Usuario u where u.login = :login and u.senha = :senha")
                         .setParameter("login", login)
                         .setParameter("senha", senha).getSingleResult();
-                em.getTransaction().commit();
+                    em.getTransaction().commit();
                     em.close();
+                    
                 
                 return user;
                 
-            } catch(NoResultException e){
+            } catch(Exception e){
             
+                 e.printStackTrace();
+                 return null;
+                
+            }
+            
+        }
+        
+        public Usuario getUserByCpf(String cpf){
+        
+            try{
+                em.getTransaction().begin();
+                Usuario user = (Usuario) em.createQuery("SELECT u from Usuario u where u.cpf = :cpf")
+                        .setParameter("cpf", cpf)
+                        .getSingleResult();
+                    em.getTransaction().commit();
+                    em.close();
+                    
+                
+                return user;
+                
+            } catch(Exception e){
+                
                 return null;
             }
             
         }
+        
            public boolean insereUsuario(Usuario user){
                 try{
-                    em.getTransaction().begin();
+                    
                     em.persist(user);
                     em.getTransaction().commit();
                     em.close();
+                    
                     return true;   
                     
                 }catch (Exception e){
@@ -62,6 +87,7 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstu
                     em.remove(user);
                     em.getTransaction().commit();
                     em.close();
+                    
                     return true;
                 }catch(Exception e){
                     
@@ -70,6 +96,10 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstu
                 }
                 
             }
+
+    public UsuarioDAO() {
+    }
+            
             
             
                 

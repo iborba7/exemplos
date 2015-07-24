@@ -20,21 +20,46 @@ import javax.persistence.Query;
 public class AlunoDAO {
     
     
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstudantesPU2");
-        EntityManager em = emf.createEntityManager();
-    
-        public Aluno getAluno(String nome, String matricula, Long cpf){
+ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstudantesPU2");
+          EntityManager em = emf.createEntityManager();
+        
+        public boolean connect (){
+            
+            try{
+            em.getTransaction().begin();
+            return true;
+            
+            }catch(Exception e){
+            
+                e.printStackTrace();
+                return false; 
+            }
+        }
+        
+        public boolean disconnect(){
         
             try{
-                
-                em.getTransaction().begin();
+            em.getTransaction().commit();
+            em.close();
+            
+            return true;
+            
+            }catch(Exception e){
+            
+                e.printStackTrace();
+                return false; 
+            }
+        
+        }
+    
+        public Aluno getAluno(String nome, String matricula, String cpf){
+        
+            try{
                 
                 Aluno aluno = (Aluno) em.createQuery("SELECT a from aluno a where a.nome = :nome, a.matricula = :matricula, a.cpf = :cpf")
                         .setParameter("nome", nome)
                         .setParameter("matricula", matricula)
                         .setParameter("cpf", cpf).getSingleResult();
-                em.getTransaction().commit();
-                    
                 
                 return aluno;
                 
@@ -45,40 +70,45 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstu
             
         }
         
-        public Aluno buscaAluno(Long cpf){
-            
-            em.getTransaction().begin();
-            Aluno aluno = em.find(Aluno.class, cpf);
-            em.getTransaction().commit();
+         public Aluno getAlunoByCpf(String cpf){
+        
+            try{
                 
+                Aluno aluno = (Aluno) em.createQuery("SELECT a from Aluno a where a.cpf = :cpf")
+                        .setParameter("cpf", cpf).getSingleResult();
+                
+                return aluno;
+                
+            } catch(Exception e){
+            
+                return null;
+            }
+            
+        }
+        
+        public Aluno buscaAluno(int id){
+            
+            
+           Aluno aluno = em.find(Aluno.class, id);
+            
             return aluno;
         }
         
         
         public List<Aluno> listaAlunos (){
-        
-            em.getTransaction().begin();
-            
-            Query q = em.createNativeQuery("SELECT c FROM aluno c ORDER BY c.id;");
+         
+            Query q = em.createQuery("SELECT a FROM Aluno a ORDER BY a.nome");
             
             List<Aluno> cadastro = q.getResultList();
-            
-            em.getTransaction().commit();
             
             return cadastro;
                         
         }
         
-        
            public void insereAluno(Aluno aluno){
                 try{
-                    
-                    em.getTransaction().begin();
+                   
                     em.persist(aluno);
-                    em.getTransaction().commit();
-                    
-                    
-                       
                     
                     
                 }catch (Exception e){
@@ -88,14 +118,15 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstu
                 }                    
                 }
            
-            public boolean deletaAluno (Aluno aluno){
+            public boolean deletaAluno (int id){
             
                 try{
-                    em.getTransaction().begin();
-                    em.remove(aluno);
-                    em.getTransaction().commit();
                     
-                    return true;
+                     Aluno aluno = em.find(Aluno.class, id);
+                        
+                        em.remove(aluno);
+                    
+                        return true;
                 }catch(Exception e){
                     
                     e.printStackTrace();

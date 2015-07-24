@@ -23,7 +23,7 @@
                 <li><a href="removerAlunos">Remover Alunos</a></li>
                 <li><a href="registrarFrequencia">Registrar Frequência</a></li>
             </ul>
-        </h1>
+        </h2>
         <footer>${pageContext.request.getAttribute(usuario)}</footer>
     </body>
 </html>

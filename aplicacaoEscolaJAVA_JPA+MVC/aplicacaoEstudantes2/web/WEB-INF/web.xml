@@ -16,6 +16,10 @@
         <servlet-name>ListaAluno</servlet-name>
         <servlet-class>Controller.aluno.ListaAluno</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoverAluno</servlet-name>
+        <servlet-class>Controller.aluno.RemoverAluno</servlet-class>
+    </servlet>
     
     <session-config>
         <session-timeout>

@@ -24,7 +24,7 @@ public class SalvaAluno extends HttpServlet {
     
     String nome;
     String matricula;
-    Long cpf;
+    String cpf;
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,31 +32,25 @@ public class SalvaAluno extends HttpServlet {
         
         nome = request.getParameter("nome");
         matricula = request.getParameter("matricula");
-        cpf = Long.parseLong(request.getParameter("cpf"));
+        cpf = request.getParameter("cpf");
        
-        
         AlunoDAO dao = new AlunoDAO();
-        Aluno aluno = dao.buscaAluno(cpf);
+        dao.connect();
+        Aluno aluno = new Aluno();
+        aluno = dao.getAlunoByCpf(cpf);
         
-        if(aluno == null) {
-            aluno = new Aluno(nome, matricula, cpf);
-            dao.insereAluno(aluno);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("gerenciarAlunos.jsp");
-                dispatcher.forward(request, response);
-            
-        }
-        else{
-            
+        if(aluno != null){
+                dao.disconnect();
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/alunoExistente.html");
                 dispatcher.forward(request, response);
-    }
-                
-                
-              
+        }
         
-         
-        
-        
+        aluno = new Aluno(nome, matricula, cpf);
+            
+            dao.insereAluno(aluno);
+            dao.disconnect();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("gerenciarAlunos.jsp");
+            dispatcher.forward(request, response);
         
     }
 

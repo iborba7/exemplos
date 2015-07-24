@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import MODEL.Usuario;
+import DAO.UsuarioDAO;
 
 /**
  *
@@ -31,14 +32,14 @@ public class SalvaUsuario extends HttpServlet {
         String senha;
         String senhaConf;
         String login;
-        int cpf;
-        String sql;
+        String cpf;
+        
         
         try{
         nome = request.getParameter("nome");
         login = request.getParameter("login");
         senha = request.getParameter("senha");
-        cpf = Integer.parseInt(request.getParameter("cpf"));
+        cpf = request.getParameter("cpf");
         
        
         } catch (Exception e){
@@ -46,29 +47,25 @@ public class SalvaUsuario extends HttpServlet {
             throw new DadosInvalidosException();
         }
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacaoEstudantesPU");
-        EntityManager em = emf.createEntityManager();
-        
-        em.getTransaction().begin();
-        
-        Usuario user = em.find(Usuario.class, cpf);
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario user = dao.getUserByCpf(cpf);
         
         if(user == null){
         
             user = new Usuario(nome, senha, cpf, login);
-            em.persist(user);
+            dao.insereUsuario(user);
+            
+             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.html");
+            dispatcher.forward(request, response);
         } else {
             
-            user.setNome(nome);
-            user.setSenha(senha);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/usuarioExistente.html");
+            dispatcher.forward(request, response);
         }
         
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.html");
-        dispatcher.forward(request, response);
+        
+       
     }
 
     /**

@@ -25,12 +25,12 @@ import sun.security.util.BigInt;
 public class Aluno implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    @Column (insertable = true, name = "nome", nullable = false)
+    @Column (nullable = false)
     private String nome;
     @Column(insertable = true, name = "matricula", nullable = false)
     private String matricula;
     @Column (insertable = true, name = "cpf", nullable = false)
-    private Long cpf;   
+    private String cpf;   
     
      /**@Id
     @SequenceGenerator(name="aluno_id_seq",
@@ -41,13 +41,13 @@ public class Aluno implements Serializable {
     @Column(name = "id", updatable=false)*/
     @Id
     @GeneratedValue
-    private Long id; 
+    private int id; 
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -60,11 +60,11 @@ public class Aluno implements Serializable {
     }
      
          
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -72,7 +72,13 @@ public class Aluno implements Serializable {
         this.matricula = matricula;
     }
 
-    public Aluno(String nome, String matricula, Long cpf) {
+    public String getMatricula() {
+        return matricula;
+    }
+    
+    
+
+    public Aluno(String nome, String matricula, String cpf) {
         this.nome = nome;
         this.matricula = matricula;
         this.cpf = cpf;
