@@ -11,8 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DAO.AlunoDAO;
-import MODEL.Aluno;
+import DAO.Aluno.AlunoDAO;
+import MODEL.Aluno.Aluno;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 /**
@@ -24,7 +24,7 @@ public class SalvaAluno extends HttpServlet {
     
     String nome;
     String matricula;
-    Long cpf;
+    String cpf;
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,31 +32,25 @@ public class SalvaAluno extends HttpServlet {
         
         nome = request.getParameter("nome");
         matricula = request.getParameter("matricula");
-        cpf = Long.parseLong(request.getParameter("cpf"));
+        cpf = request.getParameter("cpf");
        
-        
         AlunoDAO dao = new AlunoDAO();
-        Aluno aluno = dao.buscaAluno(cpf);
+        dao.connect();
+        Aluno aluno = new Aluno();
+        aluno = dao.getAlunoByCpf(cpf);
         
-        if(aluno == null) {
-            aluno = new Aluno(nome, matricula, cpf);
-            dao.insereAluno(aluno);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("gerenciarAlunos.jsp");
+        if(aluno != null){
+                dao.disconnect();
+                RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/alunoExistente.html");
                 dispatcher.forward(request, response);
-            
         }
-        else{
+        
+        aluno = new Aluno(nome, matricula, cpf);
             
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/alunoExistente.html");
-                dispatcher.forward(request, response);
-    }
-                
-                
-              
-        
-         
-        
-        
+            dao.insereAluno(aluno);
+            dao.disconnect();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/gerenciarAlunos.jsp");
+            dispatcher.forward(request, response);
         
     }
 

@@ -5,8 +5,6 @@
  */
 package Controller.aluno;
 
-import DAO.Aluno.AlunoDAO;
-import MODEL.Aluno.Aluno;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Compaq
  */
-@WebServlet(value = "/EncaminhaListaAlunos")
-public class EncaminhaListaAlunos extends HttpServlet {
+@WebServlet(name = "EncaminhaRegistrarFrequencia", urlPatterns = {"/EncaminhaRegistrarFrequencia"})
+public class EncaminhaRegistrarFrequencia extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,28 +38,12 @@ public class EncaminhaListaAlunos extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet listarAlunos</title>");            
+            out.println("<title>Servlet EncaminhaRegistrarFrequencia</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet listarAlunos at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EncaminhaRegistrarFrequencia at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            int id;
-        
-            try {
-            id = Integer.parseInt(request.getParameter("id"));
-            AlunoDAO dao = new AlunoDAO();
-             
-             Aluno aluno = dao.buscaAluno(id);
-             request.setAttribute("aluno", aluno);
-        
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/alterarAluno.jsp");
-            dispatcher.forward(request, response);
-            
-            } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-           
         }
     }
 
@@ -79,8 +61,8 @@ public class EncaminhaListaAlunos extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-        
-        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/registrarFrequencia.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -95,8 +77,6 @@ public class EncaminhaListaAlunos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
     }
 
     /**

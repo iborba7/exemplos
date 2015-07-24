@@ -6,26 +6,37 @@
 package Controller.aluno;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DAO.AlunoDAO;
-import MODEL.Aluno;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.annotation.WebServlet;
-import javax.validation.OverridesAttribute.List;
+import DAO.Aluno.AlunoDAO;
 /**
  *
  * @author Compaq
  */
-@WebServlet(value = "/ListaAluno")
+@WebServlet(name="ListaAlunos",urlPatterns={"/ListaAluno"})
 public class ListaAluno extends HttpServlet {
 
-        
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            
+            AlunoDAO dao = new AlunoDAO();
+            
+            request.setAttribute("cadastro", dao.listaAlunos());
+            
+             RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/exibirCadastro.jsp");
+        dispatcher.forward(request, response);
     
-
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,15 +44,10 @@ public class ListaAluno extends HttpServlet {
             
             AlunoDAO dao = new AlunoDAO();
             
-            request.setAttribute("cadastro",dao.listaAlunos());
-             RequestDispatcher dispatcher = request.getRequestDispatcher("exibirCadastro.jsp");
+            request.setAttribute("cadastro", dao.listaAlunos());
+            
+             RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/exibirCadastro.jsp");
         dispatcher.forward(request, response);
-    
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
     
     }
 

@@ -8,32 +8,42 @@ package Controller.aluno;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
-import javax.ws.rs.core.Request;
-import Controller.usuario.loginController;
+import DAO.Aluno.AlunoDAO;
+import MODEL.Aluno.Aluno;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.annotation.WebServlet;
-
 /**
  *
  * @author Compaq
  */
-@WebServlet(value="/gerenciarAlunos")
-public class GerenciaAlunos extends HttpServlet {
+@WebServlet(value="/RemoverAluno")
+public class RemoverAluno extends HttpServlet {
+    int id;
 
-    
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/gerenciarAlunos.jsp");
-          dispatcher.forward(request, response);
-    
+        
+         try {
+            id = Integer.parseInt(request.getParameter("id"));
+            AlunoDAO dao = new AlunoDAO();
+             dao.connect();
+             dao.deletaAluno(id);
+             dao.disconnect();
+             
+             RequestDispatcher dispatcher = request.getRequestDispatcher("ListaAluno");
+            dispatcher.forward(request, response);
+             
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
     }
+                
+         
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -46,9 +56,7 @@ public class GerenciaAlunos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
         
-   
     }
 
     /**
@@ -62,3 +70,4 @@ public class GerenciaAlunos extends HttpServlet {
     }// </editor-fold>
 
 }
+
