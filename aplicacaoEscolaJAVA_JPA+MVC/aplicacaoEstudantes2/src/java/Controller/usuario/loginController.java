@@ -44,7 +44,11 @@ public class loginController extends HttpServlet {
         
         if(usuario == null ){
         
+<<<<<<< HEAD
         RequestDispatcher dispatcher = request.getRequestDispatcher("ViewUsuario/cadastro.html");
+=======
+        RequestDispatcher dispatcher = request.getRequestDispatcher("cadastro.html");
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
         dispatcher.forward(request, response);
             
         }

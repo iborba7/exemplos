@@ -12,8 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import DAO.Aluno.AlunoDAO;
 import MODEL.Aluno.Aluno;
+=======
+import DAO.AlunoDAO;
+import MODEL.Aluno;
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
 import javax.servlet.RequestDispatcher;
 /**
  *

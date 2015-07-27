@@ -17,7 +17,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import DAO.Aluno.AlunoDAO;
+=======
+import DAO.AlunoDAO;
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
 /**
  *
  * @author Compaq
@@ -33,11 +37,16 @@ public class ListaAluno extends HttpServlet {
             
             request.setAttribute("cadastro", dao.listaAlunos());
             
+<<<<<<< HEAD
              RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/exibirCadastro.jsp");
+=======
+             RequestDispatcher dispatcher = request.getRequestDispatcher("exibirCadastro.jsp");
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
         dispatcher.forward(request, response);
     
     }
 
+<<<<<<< HEAD
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,8 +57,9 @@ public class ListaAluno extends HttpServlet {
             
              RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/exibirCadastro.jsp");
         dispatcher.forward(request, response);
+=======
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
     
-    }
 
     
     @Override

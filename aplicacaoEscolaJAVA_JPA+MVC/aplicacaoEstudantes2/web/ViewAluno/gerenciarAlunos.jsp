@@ -22,7 +22,11 @@
                 <li><a href="listarFrequencia">Listar Frequência</a></li>
                 <li><a href="registrarFrequencia">Registrar Frequência</a></li>
             </ul>
+<<<<<<< HEAD:aplicacaoEscolaJAVA_JPA+MVC/aplicacaoEstudantes2/web/ViewAluno/gerenciarAlunos.jsp
         
+=======
+        </h2>
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e:aplicacaoEscolaJAVA_JPA+MVC/aplicacaoEstudantes2/web/gerenciarAlunos.jsp
         <footer>${pageContext.request.getAttribute(usuario)}</footer>
     </body>
 </html>

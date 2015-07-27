@@ -41,7 +41,11 @@ public class SalvaAluno extends HttpServlet {
         
         if(aluno != null){
                 dao.disconnect();
+<<<<<<< HEAD
                 RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/alunoExistente.html");
+=======
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/alunoExistente.html");
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
                 dispatcher.forward(request, response);
         }
         
@@ -49,7 +53,11 @@ public class SalvaAluno extends HttpServlet {
             
             dao.insereAluno(aluno);
             dao.disconnect();
+<<<<<<< HEAD
             RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/gerenciarAlunos.jsp");
+=======
+            RequestDispatcher dispatcher = request.getRequestDispatcher("gerenciarAlunos.jsp");
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
             dispatcher.forward(request, response);
         
     }

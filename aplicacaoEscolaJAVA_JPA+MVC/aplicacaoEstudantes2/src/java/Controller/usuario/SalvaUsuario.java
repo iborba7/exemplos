@@ -16,8 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import MODEL.Usuario.Usuario;
 import DAO.Usuario.UsuarioDAO;
+=======
+import MODEL.Usuario;
+import DAO.UsuarioDAO;
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
 
 /**
  *
@@ -55,11 +60,19 @@ public class SalvaUsuario extends HttpServlet {
             user = new Usuario(nome, senha, cpf, login);
             dao.insereUsuario(user);
             
+<<<<<<< HEAD
              RequestDispatcher dispatcher = request.getRequestDispatcher("ViewUsuario/login.html");
             dispatcher.forward(request, response);
         } else {
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("ViewUsuario/usuarioExistente.html");
+=======
+             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.html");
+            dispatcher.forward(request, response);
+        } else {
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/usuarioExistente.html");
+>>>>>>> c3b73f56f384cabb8716636784308a096577ed0e
             dispatcher.forward(request, response);
         }
         
