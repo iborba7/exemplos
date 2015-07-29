@@ -56,31 +56,29 @@ public class AlterarAluno extends HttpServlet {
             cpf = request.getParameter("cpf");
             matricula = request.getParameter("matricula");
             id = Integer.parseInt(request.getParameter("id"));
-            
-            if(nome != null){
-                
-              AlunoDAO dao = new AlunoDAO();
-              dao.connect();
-            
-           dao.updateAlunoNome(id, nome);
+            boolean checkCpf;
+               
+           AlunoDAO dao = new AlunoDAO();
+           
+           try{
+           dao.connect();
+           }catch(Exception e){
+               
+               e.printStackTrace();
+           }
+           dao.updateAlunoNome(id, nome);     
+           
+           checkCpf = dao.updateAlunoCpf(id, cpf);
+           
+           if(checkCpf == false){
+           
+                dao.disconnect();
+                RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/alunoExistente.html");
+                dispatcher.forward(request, response);
+               
+           }
+           dao.updateAlunoMatricula(id, matricula);
            dao.disconnect();     
-            }
-            
-            if(cpf != null){
-                
-              AlunoDAO dao = new AlunoDAO();
-              dao.connect();
-           dao.updateAlunoCpf(id, cpf);
-           dao.disconnect();     
-            }
-            
-            if(nome != null){
-                
-              AlunoDAO dao = new AlunoDAO();
-              dao.connect();
-             dao.updateAlunoMatricula(id, matricula);
-             dao.disconnect();     
-            }
             
             Aluno aluno = new Aluno(nome, matricula, cpf);
                    

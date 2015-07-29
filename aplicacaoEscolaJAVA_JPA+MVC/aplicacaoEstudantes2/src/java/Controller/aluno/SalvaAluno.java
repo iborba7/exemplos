@@ -44,8 +44,6 @@ public class SalvaAluno extends HttpServlet {
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/alunoExistente.html");
 
-
-
                 dispatcher.forward(request, response);
         }
         

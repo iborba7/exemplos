@@ -5,8 +5,12 @@
  */
 package Controller.aluno;
 
+import DAO.Aluno.AlunoDAO;
+import DAO.Aluno.FrequenciaDAO;
+import MODEL.Aluno.Frequencia;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Compaq
  */
-@WebServlet(name = "RegistrarFrequencia", urlPatterns = {"/RegistrarFrequencia"})
+@WebServlet(name = "RegistrarFrequencia", urlPatterns = {"/registrarFrequencia"})
 public class RegistrarFrequencia extends HttpServlet {
 
     /**
@@ -43,6 +47,15 @@ public class RegistrarFrequencia extends HttpServlet {
             out.println("<h1>Servlet RegistrarFrequencia at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            
+            AlunoDAO dao = new AlunoDAO();
+            
+            request.setAttribute("cadastro", dao.listaAlunos());
+            
+
+             RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAluno/registrarFrequencia.jsp");
+
+        dispatcher.forward(request, response);
         }
     }
 
@@ -59,6 +72,13 @@ public class RegistrarFrequencia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        int falta;
+        int id;
+        
+        falta = Integer.parseInt(request.getParameter("falta"));
+        FrequenciaDAO freqDAO = new FrequenciaDAO();
+        Frequencia frequencia = new Frequencia();
     }
 
     /**
@@ -73,6 +93,11 @@ public class RegistrarFrequencia extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+    
+        
+        
+        
+    
     }
 
     /**

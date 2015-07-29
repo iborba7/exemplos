@@ -137,30 +137,27 @@ public class AlunoDAO {
             
             public boolean updateAlunoNome(int id, String nome){
                
-              Aluno aluno = new Aluno();
-              aluno.setId(id);
-              em.merge(aluno);
+              Aluno aluno = em.merge(em.find(Aluno.class, id)); 
               aluno.setNome(nome);
-              
               
               return true;  
             }
 
             public boolean updateAlunoCpf(int id, String cpf){
                
-               Aluno aluno = new Aluno();
-              aluno.setId(id);
-              em.merge(aluno);
-              aluno.setNome(cpf);
+              Aluno aluno = em.merge(em.find(Aluno.class, id)); 
+              if(getAlunoByCpf(cpf)== null){
+              aluno.setCpf(cpf);
+              } else {
+              return false;
+              }
               return true;  
             }
             
             public boolean updateAlunoMatricula(int id, String matricula){
                
-               Aluno aluno = new Aluno();
-              aluno.setId(id);
-              em.merge(aluno);
-              aluno.setNome(matricula);
+            Aluno aluno = em.merge(em.find(Aluno.class, id)); 
+              aluno.setMatricula(matricula);
               return true;  
             }
 }
