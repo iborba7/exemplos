@@ -13,7 +13,7 @@ import java.util.List;
  * @author lucas
  */
 public class CandlestickFactory {
-public Candlestick constroiCandleparaData (Calendar data, List<Negociacao> negociacoes){
+public Candlestick constroiCandleParaData (Calendar data, List<Negociacao> negociacoes){
     double maximo = negociacoes.get(0).getPreco();
     double minimo = negociacoes.get(0).getPreco();
     double volume = 0;

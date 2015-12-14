@@ -30,7 +30,7 @@ public class TestaCandlestickFactory {
                negociacao3, negociacao4);
 
     CandlestickFactory fabrica = new CandlestickFactory();
-    Candlestick candle = fabrica.constroiCandleparaData(
+    Candlestick candle = fabrica.constroiCandleParaData(
                         hoje, negociacoes);
 
    
