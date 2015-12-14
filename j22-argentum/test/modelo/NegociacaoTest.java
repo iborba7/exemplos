@@ -7,12 +7,14 @@
 package modelo;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -94,5 +96,26 @@ public class NegociacaoTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+    
+    @Test
+public void mesmoMilissegundoEhDoMesmoDia() {
+  Calendar agora = Calendar.getInstance();
+  Calendar mesmoMomento = (Calendar) agora.clone();
+
+  Negociacao negociacao = new Negociacao(40.0, 100, agora);
+  Assert.assertTrue(negociacao.isMesmoDia(mesmoMomento));
+}
+
+@Test
+public void comHorariosDiferentesEhNoMesmoDia() {
+  // usando GregorianCalendar(ano, mes, dia, hora, minuto)
+  Calendar manha = new GregorianCalendar(2011, 10, 20, 8, 30);
+  Calendar tarde = new GregorianCalendar(2011, 10, 20, 15, 30);
+
+  Negociacao negociacao = new Negociacao(40.0, 100, manha);
+  Assert.assertTrue(negociacao.isMesmoDia(tarde));
+}
+
+
     
 }

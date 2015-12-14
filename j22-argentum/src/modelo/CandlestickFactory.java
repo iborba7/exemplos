@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -36,4 +37,31 @@ public Candlestick constroiCandleParaData (Calendar data, List<Negociacao> negoc
     return new   Candlestick(abertura, fechamento, minimo, maximo, volume, data);
     
 }    
+
+    public List<Candlestick> constroiCandles(List<Negociacao> todasNegociacoes) {
+  List<Candlestick> candles = new ArrayList<Candlestick>();
+
+  List<Negociacao> negociacoesDoDia = new ArrayList<Negociacao>();
+  Calendar dataAtual = todasNegociacoes.get(0).getData();
+
+  for (Negociacao negociacao : todasNegociacoes) {
+    // se não for mesmo dia, fecha candle e reinicia variáveis
+    if (!negociacao.isMesmoDia(dataAtual)) {
+      Candlestick candleDoDia = constroiCandleParaData(dataAtual, 
+                            negociacoesDoDia);
+      candles.add(candleDoDia);
+      negociacoesDoDia = new ArrayList<Negociacao>();
+      dataAtual = negociacao.getData();
+    }
+    negociacoesDoDia.add(negociacao);
+  }
+  // adiciona último candle
+  Candlestick candleDoDia = constroiCandleParaData(dataAtual,
+         negociacoesDoDia);
+  candles.add(candleDoDia);
+
+  return candles;
+}
+    
+    
 }
