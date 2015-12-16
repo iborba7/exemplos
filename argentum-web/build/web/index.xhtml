@@ -8,8 +8,9 @@
     <title>Argentum Web</title>
   </h:head>
   <h:body>
-      <p:dataTable var="negociacao" value="#{argentumBean.negociacoes}">
-  <p:column headerText="Preço">
+      <h:form id="listaNegociacao">
+      <p:dataTable var="negociacao" value="#{argentumBean.negociacoes}" paginator="true" rows="15">
+          <p:column headerText="Preço" sortBy="#{negociaco.preco}">
     <h:outputText value="#{negociacao.preco}"/>
   </p:column>    
   <p:column headerText="Quantidade">
@@ -19,8 +20,11 @@
     <h:outputText value="#{negociacao.volume}"/>
   </p:column>    
   <p:column headerText="Data">
-    <h:outputText value="#{negociacao.data}"/>
+    <h:outputText value="#{negociacao.data.time}">
+    <f:convertDateTime pattern="dd/MM/yyyy"/>
+  </h:outputText>
   </p:column>
 </p:dataTable>
+          </h:form>
   </h:body>
 </html>

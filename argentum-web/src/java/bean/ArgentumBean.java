@@ -8,6 +8,7 @@ package bean;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import modelo.ClienteWebService;
 import modelo.Negociacao;
 
@@ -16,6 +17,7 @@ import modelo.Negociacao;
  * @author Lucas
  */
 @ManagedBean
+@ViewScoped
 public class ArgentumBean {
     
     private List<Negociacao> negociacoes;

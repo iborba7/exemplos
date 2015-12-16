@@ -5,13 +5,14 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author lucas
  */
-public final class Negociacao {
+public final class Negociacao implements Serializable {
   private final double preco;
   private final int quantidade;
   private final Calendar data;
