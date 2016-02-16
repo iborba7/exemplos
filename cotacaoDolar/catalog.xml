@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Lucas/Downloads/FachadaWSSGS%20(1).wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL2/wsdl/FachadaWSSGS%20(1).wsdl"/>
+    <system systemId="file:/C:/Users/Lucas/Downloads/FachadaWSSGS.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/FachadaWSSGS.wsdl"/>
+    <system systemId="file:/C:/Users/Lucas/Downloads/FachadaWSSGS%20(2).wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/FachadaWSSGS%20(2).wsdl"/>
+</catalog>
